@@ -1,0 +1,9 @@
+node_modules/
+build
+dist
+android
+ios
+expo-env.d.ts
+assets/
+.env
+.env*.local

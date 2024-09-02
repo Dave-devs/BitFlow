@@ -1,0 +1,37 @@
+# Ignore expo specific files
+client/.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+
+
+# Ignore node_modules in both client and server
+client/node_modules/
+server/node_modules/
+
+# Ignore build outputs in client and server
+client/build/
+server/dist/
+
+# Ignore .env files
+client/.env
+server/.env
+
+# Ignore expo-env.d.ts & .env.d.ts in both client and server
+client/expo-env.d.ts
+server/.env.d.ts
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
