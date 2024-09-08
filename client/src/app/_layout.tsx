@@ -5,11 +5,11 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { Appearance, Text } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import useCachedResources from '@/src/hooks/useCachedResourse';
-import HomeScreen from './(tabs)/(home)';
 import { Stack } from 'expo-router';
+import { Provider } from 'react-redux';
+import {store} from '@/src/stores/store';
+import { useLoadFonts } from '../hooks/useLoadFonts';
 
 const queryClient = new QueryClient();
 // export const unstable_settings = { initialRouteName: "(tabs)" };
@@ -58,16 +58,18 @@ export default function RootLayout() {
     return () => listener.remove();
   }, []);
 
-  const isLoadingComplete = useCachedResources();
+  const { loaded, error } = useLoadFonts();
 
-  if (!isLoadingComplete) {
+  if (!loaded && !error) {
     return null;
   }
 
   return (
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <RootLayoutNav />
+        <Provider store={store}>
+          <RootLayoutNav />
+        </Provider>
         <StatusBar style={theme.mode === 'dark' ? 'light' : 'dark'} />
       </GestureHandlerRootView>
     </QueryClientProvider>
@@ -96,3 +98,7 @@ function RootLayoutNav() {
     </Stack>
   );
 }
+
+
+
+

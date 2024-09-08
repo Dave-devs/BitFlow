@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
 import { useRouter } from 'expo-router';
 import useTheme from '@/src/hooks/useTheme';
-import { defaultStyles } from '@/src/constants/styles';
 import Button from '@/src/components/Button';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { logoImageUrl } from '@/src/constants/images';
@@ -71,11 +70,11 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   text: {
-    fontFamily: 'InterSemiBold',
+    fontFamily: 'InterSB',
     fontSize: fontsize.md
   },
   welcome: {
-    fontFamily: 'InterExtraBold',
+    fontFamily: 'InterEB',
     fontSize: fontsize.lg
   }
 });

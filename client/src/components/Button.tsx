@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   text: {
-    fontFamily: 'InterMedium',
+    fontFamily: 'Inter-Medium',
     fontSize: fontsize.sm
   }
 });

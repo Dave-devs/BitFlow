@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     gap: 10
   },
   text: {
-    fontFamily: 'InterBold',
+    fontFamily: 'Inter-Bold',
     fontSize: fontsize.xs
   }
 });

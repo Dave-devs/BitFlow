@@ -10,6 +10,7 @@ import newsInactiveIcon from '@/assets/images/news.png';
 import profileActiveIcon from '@/assets/images/profile_filled.png';
 import profileInactiveIcon from '@/assets/images/profile.png';
 import logoImage from '@/assets/images/logo.png';
+import placeholderImage from '@/assets/images/placeholder.png';
 
 export const homeActiveIconUrl = Image.resolveAssetSource(homeActiveIcon).uri
 export const homeInactiveIconUrl = Image.resolveAssetSource(homeInactiveIcon).uri
@@ -22,3 +23,4 @@ export const newsInactiveIconUrl = Image.resolveAssetSource(newsInactiveIcon).ur
 export const profileActiveIconUrl = Image.resolveAssetSource(profileActiveIcon).uri
 export const profileInactiveIconUrl = Image.resolveAssetSource(profileInactiveIcon).uri
 export const logoImageUrl = Image.resolveAssetSource(logoImage).uri
+export const placeholderImageUrl = Image.resolveAssetSource(placeholderImage).uri

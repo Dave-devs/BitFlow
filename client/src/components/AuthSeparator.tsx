@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     borderColor: 'white'
   },
   text: {
-    fontFamily: 'InterRegular',
+    fontFamily: 'Inter-Regular',
     fontSize: 10
   }
 });

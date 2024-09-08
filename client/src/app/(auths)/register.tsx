@@ -1,12 +1,10 @@
 import {
-  Image,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  ScrollView
 } from 'react-native';
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
@@ -17,9 +15,6 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 import { fontsize } from '@/src/constants/tokens';
-import { logoImageUrl } from '@/src/constants/images';
-import { defaultStyles } from '@/src/constants/styles';
-import logoImage from '@/assets/images/logo.png';
 import AuthSeparator from '@/src/components/AuthSeparator';
 import AuthButton from '@/src/components/AuthButton';
 import Button from '@/src/components/Button';
@@ -145,11 +140,11 @@ const styles = StyleSheet.create({
     paddingBottom: 30
   },
   headerText: {
-    fontFamily: 'InterBold',
+    fontFamily: 'InterB',
     fontSize: fontsize.lg
   },
   subHeaderText: {
-    fontFamily: 'InterRegular',
+    fontFamily: 'InterR',
     fontSize: fontsize.xs
   },
   inputContainer: {
@@ -157,13 +152,13 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   titleText: {
-    fontFamily: 'InterRegular',
+    fontFamily: 'InterR',
     fontSize: fontsize.xs
   },
   textInput: {
     height: hp('5.6%'),
     width: wp('90%'),
-    fontFamily: 'InterRegular',
+    fontFamily: 'InterR',
     fontSize: fontsize.sm,
     borderWidth: 1,
     borderRadius: 8,
@@ -177,11 +172,11 @@ const styles = StyleSheet.create({
     paddingTop: -15
   },
   acctText: {
-    fontFamily: 'InterRegular',
+    fontFamily: 'InterR',
     fontSize: 10,
   },
   signupText: {
-    fontFamily: 'InterBold',
+    fontFamily: 'InterB',
     fontSize: fontsize.xs,
   }
 });

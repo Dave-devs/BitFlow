@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 8
   },
   cellText: {
-    fontFamily: 'InterRegular',
+    fontFamily: 'InterR',
     fontSize: fontsize.sm,
     textAlign: 'center'
   },
@@ -153,11 +153,11 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   dontReceiveText: {
-    fontFamily: 'InterRegular',
+    fontFamily: 'InterRe',
     fontSize: 10,
   },
   resendText: {
-    fontFamily: 'InterBold',
+    fontFamily: 'InterB',
     fontSize: fontsize.xs,
   }
 });

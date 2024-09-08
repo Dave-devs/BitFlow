@@ -2027,6 +2027,11 @@
     prompts "^2.4.2"
     semver "^7.5.2"
 
+"@react-native-menu/menu@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@react-native-menu/menu/-/menu-1.1.2.tgz#972406d25296a0d01614dc36fae7884c2a08dafd"
+  integrity sha512-I7JWiwmIwRp+Tee2OJHPwzVKdLjzgUkdChHQ75oyEWo1YcVsXEjLVGmxWCTA6JExzS6SQW/ACmjuXLJFTvu9Pw==
+
 "@react-native/assets-registry@0.74.87":
   version "0.74.87"
   resolved "https://registry.yarnpkg.com/@react-native/assets-registry/-/assets-registry-0.74.87.tgz#7dda64e48db14597e19e15f679e31abbb1c1fb4d"
@@ -4583,6 +4588,13 @@ expo-file-system@~17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-17.0.1.tgz#b9f8af8c1c06ec71d96fd7a0d2567fa9e1c88f15"
   integrity sha512-dYpnZJqTGj6HCYJyXAgpFkQWsiCH3HY1ek2cFZVHFoEc5tLz9gmdEgTF6nFHurvmvfmXqxi7a5CXyVm0aFYJBw==
+
+expo-font@12.0.10:
+  version "12.0.10"
+  resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-12.0.10.tgz#62deaf1f46159d7839f01305f44079268781b1db"
+  integrity sha512-Q1i2NuYri3jy32zdnBaHHCya1wH1yMAsI+3CCmj9zlQzlhsS9Bdwcj2W3c5eU5FvH2hsNQy4O+O1NnM6o/pDaQ==
+  dependencies:
+    fontfaceobserver "^2.1.0"
 
 expo-font@~12.0.9:
   version "12.0.9"
@@ -8054,6 +8066,11 @@ recast@^0.21.0:
     esprima "~4.0.0"
     source-map "~0.6.1"
     tslib "^2.0.1"
+
+redux-persist@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
+  integrity sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==
 
 redux-thunk@^3.1.0:
   version "3.1.0"

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React, { useEffect } from 'react'
-import { Stack, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { logoImageUrl } from '@/src/constants/images';
 import useTheme from '@/src/hooks/useTheme';
 import { fontsize } from '@/src/constants/tokens';
@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontSize: fontsize.md,
-    fontFamily: 'InterSemiBold'
+    fontFamily: 'InterSB'
   },
   text: {
     fontSize: fontsize.xs,
-    fontFamily: 'InterRegular'
+    fontFamily: 'InterR'
   }
 })
