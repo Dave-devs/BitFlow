@@ -90,8 +90,8 @@ const RegisterScreen = () => {
             Password
           </Text>
           <TextInput
-            value={email}
-            onChangeText={setEmail}
+            value={password}
+            onChangeText={setPassword}
             placeholder="Password"
             numberOfLines={1}
             inputMode='text'

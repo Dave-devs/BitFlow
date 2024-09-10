@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import React from 'react';
 import useTheme from '@/src/hooks/useTheme';
 import { defaultStyles } from '@/src/constants/styles';
@@ -15,10 +15,15 @@ import { useHeaderHeight } from '@react-navigation/elements';
 import BalanceWidget from '@/src/components/BalanceWidget';
 import TransactionTile from '@/src/components/TransactionTile';
 import { fontsize } from '@/src/constants/tokens';
+import useFetchQuery from '@/src/hooks/useFetchQuery';
+import { CoinList } from '@/src/utils/CoinList';
+import LoadingMask from '../../../components/LoadingMask';
+import CoinListItem from '@/src/components/CoinListItem';
+import ErrorMask from '@/src/components/ErrorMask';
 
 const HomeScreen = () => {
   const { activeMode, activeColors, isDarkMode, switchMode } = useTheme();
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
   const headerHeight = useHeaderHeight();
 
   const dispatch = useAppDispatch();
@@ -39,82 +44,121 @@ const HomeScreen = () => {
     dispatch(clearTransactions());
   };
 
+  // Fetch Coin List
+  const url =
+    process.env.EXPO_PUBLIC_COINRANKING_API_URL +
+    '/coins?referenceCurrencyUuid=5k-_VTxqtCEI&limit=8';
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-access-token': process.env.EXPO_PUBLIC_COINRANKING_API_KEY
+    }
+  };
+
+  const { data, loading, error, refetch } = useFetchQuery<CoinList>(
+    'coins',
+    url,
+    options
+  );
+  // Ensure coins data is extracted properly
+  const coins = data?.data?.coins || [];
+
   return (
-    <ScrollView
-      style={[
-        defaultStyles.container,
-        { backgroundColor: activeColors.background, paddingTop: top },
-      ]}
-      // contentContainerStyle={{ paddingTop: headerHeight}}
-    >
-      <View style={[styles.balanceContainer]}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 1
-          }}
-        >
-          <Text style={[styles.balance, { color: activeColors.text }]}>
-            {balance}
-          </Text>
-          <Text style={[styles.sign, { color: activeColors.text }]}>$</Text>
-        </View>
-      </View>
-      {/* Rounded Buttons */}
-      <View style={styles.balanceWidgetContainer}>
-        <BalanceWidget
-          label={'Deposit'}
-          icon={'add'}
-          onPress={handleRunTransaction}
-        />
-        <BalanceWidget
-          label={'Exchange'}
-          icon={'refresh'}
-          onPress={handleClearTransactions}
-        />
-        <BalanceWidget label={'List'} icon={'list'} />
-        <BalanceWidget label={'More'} icon={'ellipsis-horizontal'} />
-      </View>
-
-      {/* Transaction History */}
-      <View style={styles.transactionWrapperContainer}>
-        <Text
-          style={[styles.transactionHeaderText, { color: activeColors.text }]}
-        >
-          Fiat Transaction History
-        </Text>
-
-        <View
-          style={[
-            styles.transactionContainer,
-            { backgroundColor: activeColors.tile }
-          ]}
-        >
-          {transactions.length === 0 && (
-            <Text
-              style={[styles.noTransactionText, { color: activeColors.text }]}
-            >
-              No transactions yet
+    <>
+      <ScrollView
+        style={[
+          defaultStyles.container,
+          {
+            backgroundColor: activeColors.background,
+            paddingTop: top,
+            paddingBottom: 100
+          }
+        ]}
+        contentContainerStyle={{ paddingBottom: 120 }}
+      >
+        <View style={[styles.balanceContainer]}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 1
+            }}
+          >
+            <Text style={[styles.balance, { color: activeColors.text }]}>
+              {balance}
             </Text>
-          )}
-
-          {transactions
-            .map((transaction) => (
-              <TransactionTile
-                id={transaction.id}
-                icon={transaction.amount > 0 ? 'add' : 'remove'}
-                amount={transaction.amount}
-                title={transaction.title}
-                date={transaction.date}
-                color={transaction.amount > 0 ? 'green' : 'red'}
-              />
-            ))
-            .reverse()}
+            <Text style={[styles.sign, { color: activeColors.text }]}>$</Text>
+          </View>
         </View>
-      </View>
-    </ScrollView>
+        {/* Rounded Buttons */}
+        <View style={styles.balanceWidgetContainer}>
+          <BalanceWidget
+            label={'Deposit'}
+            icon={'add'}
+            onPress={handleRunTransaction}
+          />
+          <BalanceWidget
+            label={'Exchange'}
+            icon={'refresh'}
+            onPress={handleClearTransactions}
+          />
+          <BalanceWidget label={'List'} icon={'list'} />
+          <BalanceWidget label={'More'} icon={'ellipsis-horizontal'} />
+        </View>
+
+        {/* Transaction History */}
+        <View style={styles.transactionWrapperContainer}>
+          <Text
+            style={[styles.transactionHeaderText, { color: activeColors.text }]}
+          >
+            Fiat Transaction History
+          </Text>
+
+          <View
+            style={[
+              styles.transactionContainer,
+              { backgroundColor: activeColors.tile }
+            ]}
+          >
+            {transactions.length === 0 && (
+              <Text
+                style={[styles.noTransactionText, { color: activeColors.text }]}
+              >
+                No transactions yet
+              </Text>
+            )}
+
+            {transactions
+              .map((transaction) => (
+                <TransactionTile
+                  id={transaction.id}
+                  icon={transaction.amount > 0 ? 'add' : 'remove'}
+                  amount={transaction.amount}
+                  title={transaction.title}
+                  date={transaction.date}
+                  color={transaction.amount > 0 ? 'green' : 'red'}
+                />
+              ))
+              .reverse()}
+          </View>
+        </View>
+
+        {/* Display Coin List */}
+        <View style={styles.coinlistContainer}>
+          <Text
+            style={[styles.transactionHeaderText, { color: activeColors.text }]}
+          >
+            Cryptocurrecies
+          </Text>
+        </View>
+        {coins.length > 0 && <CoinListItem coins={coins} />}
+      </ScrollView>
+      {/* Show Loading Tile */}
+      {loading && <LoadingMask loading={loading} text={'Loading...'} />}
+      {/* Show Error Tile */}
+      {error && <ErrorMask error={error.message} />}
+    </>
   );
 };
 
@@ -160,5 +204,9 @@ const styles = StyleSheet.create({
   sortableContainer: {
     paddingHorizontal: 20,
     paddingBottom: 10
+  },
+  coinlistContainer: {
+    paddingBottom: 20,
+    paddingHorizontal: 20
   }
 });

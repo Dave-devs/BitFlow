@@ -2,8 +2,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  useWindowDimensions,
-  View
 } from 'react-native';
 import React from 'react';
 import { fontsize } from '@/src/constants/tokens';
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   text: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'InterM',
     fontSize: fontsize.sm
   }
 });

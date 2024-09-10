@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { fontsize } from '@/src/constants/tokens';
 import useTheme from '@/src/hooks/useTheme';
 
 const AuthSeparator = () => {
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
     borderColor: 'white'
   },
   text: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'InterR',
     fontSize: 10
   }
 });

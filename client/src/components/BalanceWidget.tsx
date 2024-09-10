@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   label: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'InterM',
     fontSize: fontsize.xs
   }
 });

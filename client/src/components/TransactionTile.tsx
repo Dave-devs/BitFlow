@@ -3,6 +3,7 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import useTheme from '../hooks/useTheme';
 import { fontsize } from '../constants/tokens';
+import { format } from "date-fns";
 
 type TransactionTileProps = {
   id: string;
@@ -39,7 +40,7 @@ const TransactionTile = ({
         </Text>
       </View>
       <Text style={[styles.date, { color: activeColors.greyText }]}>
-        {date.toLocaleDateString()}
+        {format(new Date(date), "yy/MM/dd")}
       </Text>
     </View>
   );
@@ -64,15 +65,15 @@ const styles = StyleSheet.create({
     flex: 1
   },
   amount: {
-    fontFamily: 'Inter-ExtraBold',
+    fontFamily: 'InterEB',
       fontSize: fontsize.sm
   },
   title: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'InterR',
     fontSize: fontsize.xs
   },
   date: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'InterR',
     fontSize: fontsize.xs
   }
 });

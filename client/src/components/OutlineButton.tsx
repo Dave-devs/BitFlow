@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   text: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'InterM',
     fontSize: fontsize.sm
   }
 });

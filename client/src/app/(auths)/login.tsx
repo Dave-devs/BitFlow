@@ -15,9 +15,6 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 import { fontsize } from '@/src/constants/tokens';
-import { logoImageUrl } from '@/src/constants/images';
-import { defaultStyles } from '@/src/constants/styles';
-import logoImage from '@/assets/images/logo.png';
 import AuthSeparator from '@/src/components/AuthSeparator';
 import AuthButton from '@/src/components/AuthButton';
 import Button from '@/src/components/Button';
