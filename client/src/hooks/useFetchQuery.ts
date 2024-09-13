@@ -2,10 +2,10 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import axios, { AxiosRequestConfig } from 'axios';
 
 interface FetchResponse<T> {
-  data: T;
+  data: T | null; // Allow data to be null until it's loaded
   loading: boolean;
   error: Error | null;
-  refetch?: () => void;
+  refetch: () => void;
 }
 
 const fetchData = async <T>(
@@ -23,15 +23,16 @@ const useFetchQuery = <T>(
 ): FetchResponse<T> => {
   const queryResult: UseQueryResult<T, Error> = useQuery<T, Error>({
     queryKey: [name, url, config],
-    queryFn: () => fetchData<T>(url, config)
+    queryFn: () => fetchData<T>(url, config),
+    enabled: !!url // Ensure the query does not run if the URL is empty or undefined
   });
 
   const { data, isLoading, error, refetch } = queryResult;
 
   return {
-    data: data as T,
+    data: data || null, // Ensure data is null if not yet loaded
     loading: isLoading,
-    error: error ?? null,
+    error: error || null,
     refetch
   };
 };

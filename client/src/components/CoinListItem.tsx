@@ -7,32 +7,28 @@ import {
   Image
 } from 'react-native';
 import React from 'react';
-import { Coin } from '../utils/CoinList';
-import Animated, {
-  FadeInDown,
-  useAnimatedStyle
-} from 'react-native-reanimated';
-import { placeholderImageUrl } from '../constants/images';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import numeral from 'numeral';
 import useTheme from '../hooks/useTheme';
 import { fontsize } from '../constants/tokens';
-import Svg, { SvgProps, Path } from 'react-native-svg';
 import SvgComponent from './SvgImage';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
+import { Coins } from '../utils/CoinList';
+import { defaultStyles } from '../constants/styles';
 
 type RenderItemProps = {
-  item: Coin;
+  item: Coins;
   index: number;
 };
 
 type CoinListItemProps = {
-  coins: Array<Coin>;
+  coins: Array<any>;
   charts?: boolean;
   onPress?: () => void;
 };
 
 const CoinListItem = ({ coins, charts, onPress }: CoinListItemProps) => {
-  const { bottom } = useSafeAreaInsets();
+  const router = useRouter();
   const { activeMode, activeColors, isDarkMode, switchMode } = useTheme();
 
   return (
@@ -44,7 +40,14 @@ const CoinListItem = ({ coins, charts, onPress }: CoinListItemProps) => {
       renderItem={({ item, index }: RenderItemProps) => (
         <TouchableOpacity
           style={{ paddingBottom: 8 }}
-          onPress={onPress}
+          onPress={() => {
+            router.push({
+              pathname: '/(tabs)/(home)/coin-details',
+              params: {
+                coinId: item.uuid
+              }
+            });
+          }}
           key={item.uuid}
         >
           <Animated.View
@@ -62,7 +65,7 @@ const CoinListItem = ({ coins, charts, onPress }: CoinListItemProps) => {
                 source={{
                   uri: item?.iconUrl
                 }}
-                style={styles.image}
+                style={defaultStyles.iconImage}
               />
             )}
             {item.iconUrl.endsWith('.jpg') && (
@@ -70,23 +73,28 @@ const CoinListItem = ({ coins, charts, onPress }: CoinListItemProps) => {
                 source={{
                   uri: item?.iconUrl
                 }}
-                style={styles.image}
+                style={defaultStyles.iconImage}
               />
             )}
 
-            <View style={styles.nameContainer}>
+            <View style={defaultStyles.nameContainer}>
               {/* Name */}
-              <Text style={[styles.name, { color: activeColors.text }]}>
+              <Text style={[defaultStyles.name, { color: activeColors.text }]}>
                 {item.name}
               </Text>
               {/* Price & Change */}
-              <View style={styles.priceContainer}>
-                <Text style={[styles.price, { color: activeColors.greyText }]}>
+              <View style={defaultStyles.priceContainer}>
+                <Text
+                  style={[
+                    defaultStyles.price,
+                    { color: activeColors.greyText }
+                  ]}
+                >
                   {numeral(parseFloat(item.price)).format('$0,0.00')}
                 </Text>
                 <Text
                   style={[
-                    styles.change,
+                    defaultStyles.change,
                     {
                       color:
                         parseFloat(item.change) < 0
@@ -108,12 +116,17 @@ const CoinListItem = ({ coins, charts, onPress }: CoinListItemProps) => {
             )}
 
             {/* Symbol & Market Cap */}
-            <View style={styles.symbolContainer}>
-              <Text style={[styles.symbol, { color: activeColors.text }]}>
+            <View style={defaultStyles.symbolContainer}>
+              <Text
+                style={[defaultStyles.symbol, { color: activeColors.text }]}
+              >
                 {item.symbol}
               </Text>
               <Text
-                style={[styles.marketCap, { color: activeColors.greyText }]}
+                style={[
+                  defaultStyles.marketCap,
+                  { color: activeColors.greyText }
+                ]}
               >
                 {item.marketCap.length > 9
                   ? item.marketCap.slice(0, 9)
@@ -135,47 +148,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 15,
     paddingVertical: 6
-  },
-  image: {
-    height: 40,
-    width: 40,
-    resizeMode: 'contain',
-    borderRadius: 50,
-    aspectRatio: 1
-  },
-  nameContainer: {
-    width: '65%',
-    gap: 2,
-    alignItems: 'flex-start'
-  },
-  name: {
-    fontFamily: 'InterB',
-    fontSize: fontsize.sm
-  },
-  priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4
-  },
-  price: {
-    fontFamily: 'InterR',
-    fontSize: fontsize.xs
-  },
-  change: {
-    fontFamily: 'InterR',
-    fontSize: fontsize.xs
-  },
-  symbolContainer: {
-    alignSelf: 'flex-start',
-    alignItems: 'flex-start'
-  },
-  symbol: {
-    fontFamily: 'InterB',
-    fontSize: fontsize.sm
-  },
-  marketCap: {
-    fontFamily: 'InterR',
-    fontSize: 10,
-    textAlign: 'right'
   }
 });

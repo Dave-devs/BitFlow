@@ -20,8 +20,10 @@ import { CoinList } from '@/src/utils/CoinList';
 import LoadingMask from '../../../components/LoadingMask';
 import CoinListItem from '@/src/components/CoinListItem';
 import ErrorMask from '@/src/components/ErrorMask';
+import { useRouter } from 'expo-router';
 
 const HomeScreen = () => {
+  const router = useRouter();
   const { activeMode, activeColors, isDarkMode, switchMode } = useTheme();
   const { top, bottom } = useSafeAreaInsets();
   const headerHeight = useHeaderHeight();
@@ -149,7 +151,7 @@ const HomeScreen = () => {
           <Text
             style={[styles.transactionHeaderText, { color: activeColors.text }]}
           >
-            Cryptocurrecies
+            Coins
           </Text>
         </View>
         {coins.length > 0 && <CoinListItem coins={coins} />}

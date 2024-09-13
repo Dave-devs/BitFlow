@@ -6,10 +6,10 @@ export interface CoinList {
 
 export interface Data {
   stats: Stats;
-  coins: Coin[];
+  coins: Coins[];
 }
 
- export interface Coin {
+ export interface Coins {
   uuid: string;
   symbol: string;
   name: string;

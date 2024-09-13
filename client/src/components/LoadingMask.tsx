@@ -1,11 +1,10 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import LoginScreen from '../app/(auths)/login';
 import useTheme from '../hooks/useTheme';
-import { fontsize } from '../constants/tokens';
+import { defaultStyles } from '../constants/styles';
 
 type LoadinMaskProps = {
-  loading: boolean;
+  loading?: boolean;
   text: string;
 };
 
@@ -15,9 +14,9 @@ const LoadingMask = ({ loading, text }: LoadinMaskProps) => {
   return (
     <View style={[styles.container, { backgroundColor: activeColors.background }]}>
       {loading && (
-        <View style={[styles.textContainer, {backgroundColor: activeColors.text}]}>
+        <View style={[defaultStyles.loadingBox, {backgroundColor: activeColors.text}]}>
           <ActivityIndicator size="large" color={activeColors.primary} />
-          <Text style={[styles.text, { color: activeColors.background }]}>
+          <Text style={[defaultStyles.loadingText, { color: activeColors.background }]}>
             {text}
           </Text>
         </View>
@@ -33,18 +32,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  textContainer: {
-    height: 130,
-    width: 200,
-    gap: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    padding: 10
-  },
-  text: {
-    fontFamily: 'InterB',
-    fontSize: fontsize.xs
   }
 });
