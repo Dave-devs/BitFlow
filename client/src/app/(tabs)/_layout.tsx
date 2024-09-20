@@ -66,7 +66,10 @@ const TabsNavigation = () => {
       <Tabs.Screen
         name="market"
         options={{
+          headerShown: true,
+          headerStyle: { backgroundColor: activeColors.background },
           title: 'Market',
+          headerTitleStyle: { color: activeColors.text },
           tabBarIcon: ({ color, focused }) =>
             focused ? (
               <Image

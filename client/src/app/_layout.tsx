@@ -95,6 +95,7 @@ function RootLayoutNav() {
       ) : (
         <Stack.Screen name="(auths)" />
       )}
+      <Stack.Screen name="(pages)" />
     </Stack>
   );
 }
