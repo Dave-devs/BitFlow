@@ -34,11 +34,11 @@ const styles = StyleSheet.create({
     gap: 16
   },
   textOne: {
-    fontFamily: 'InterM',
+    fontFamily: 'interM',
     fontSize: fontsize.xs
   },
   textTwo: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: fontsize.xs
   }
 });

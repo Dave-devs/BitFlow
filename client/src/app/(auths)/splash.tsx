@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontSize: fontsize.md,
-    fontFamily: 'InterSB'
+    fontFamily: 'interSB'
   },
   text: {
     fontSize: fontsize.xs,
-    fontFamily: 'InterR'
+    fontFamily: 'inter'
   }
 })

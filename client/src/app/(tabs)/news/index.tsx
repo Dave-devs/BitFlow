@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet,} from 'react-native'
-import React from 'react'
+import { ScrollView, StyleSheet, Text, RefreshControl } from 'react-native';
+import React, { useState } from 'react';
 import useTheme from '@/src/hooks/useTheme';
 import { defaultStyles } from '@/src/constants/styles';
 import useFetchQuery from '@/src/hooks/useFetchQuery';
@@ -10,45 +10,62 @@ import ErrorMask from '@/src/components/ErrorMask';
 import CoinNewsItem from '@/src/components/CoinNewsItem';
 
 const NewsScreen = () => {
-    const insets = useSafeAreaInsets();
-    const { activeMode, activeColors, isDarkMode, switchMode } = useTheme();
+  const insets = useSafeAreaInsets();
+  const { activeColors } = useTheme();
 
-    // Fetch Coin List
-    const url = process.env.EXPO_PUBLIC_COINDESK_API_URL as string
+  // Fetch Coin List
+  const url = process.env.EXPO_PUBLIC_COINTELEGRAPH_API_URL as string;
 
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': process.env.EXPO_PUBLIC_COINDESK_API_KEY,
-            'x-rapidapi-host': process.env.EXPO_PUBLIC_COINDESK_HOST
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': process.env.EXPO_PUBLIC_COINTELEGRAPH_API_KEY,
+      'x-rapidapi-host': process.env.EXPO_PUBLIC_COINTELEGRAPH_HOST
+    }
+  };
+
+  const { data, loading, error, refetch } = useFetchQuery<CoinNews>(
+    'fetch-coin-news',
+    url,
+    options
+  );
+
+  //   console.log('News List', data);
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+
+  return (
+    <ScrollView
+      style={[
+        defaultStyles.container,
+        {
+          backgroundColor: activeColors.background,
+          paddingVertical: insets.top
         }
-    };
+      ]}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+      //   contentContainerStyle={styles.container}
+    >
+      {/* Show Loading Mask */}
+      {loading && <LoadingMask loading={loading} text={'Loading...'} />}
 
-    const { data, loading, error, refetch } = useFetchQuery<CoinNews>(
-        'coin-news',
-        url,
-        options
-    );
+      {/* Show Error Mask */}
+      {error && <ErrorMask error={error.message} />}
 
-    return (
-        <ScrollView
-            style={[
-                defaultStyles.container,
-                { backgroundColor: activeColors.background, paddingVertical: 20 }
-            ]}
-        >
-            {/* Show Loading Tile */}
-            {loading && <LoadingMask loading={loading} text={'Loading...'} />}
-            {/* Show Error Tile */}
-            {error && <ErrorMask error={error.message} />}
-            {/* Show Coin List */}
-            {data && <CoinNewsItem /> }
-        </ScrollView>
-    )
-}
+      {/* Show Coin News List only if data is not null */}
+      {data && Array.isArray(data) && <CoinNewsItem news={data} />}
+    </ScrollView>
+  );
+};
 
-export default NewsScreen
+export default NewsScreen;
 
-const styles = StyleSheet.create({
-
-})
+const styles = StyleSheet.create({});

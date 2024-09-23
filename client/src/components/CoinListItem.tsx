@@ -10,7 +10,6 @@ import React from 'react';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import numeral from 'numeral';
 import useTheme from '../hooks/useTheme';
-import { fontsize } from '../constants/tokens';
 import SvgComponent from './SvgImage';
 import { useRouter } from 'expo-router';
 import { Coins } from '../utils/CoinList';

@@ -69,11 +69,11 @@ const styles = StyleSheet.create({
     gap: 5
   },
   symbol: {
-    fontFamily: 'InterB',
+    fontFamily: 'interB',
     fontSize: fontsize.sm
   },
   price: {
-    fontFamily: 'InterB',
+    fontFamily: 'interB',
     fontSize: fontsize.xs
   }
 });

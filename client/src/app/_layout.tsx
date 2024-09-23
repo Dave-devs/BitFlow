@@ -3,19 +3,28 @@ import { ThemeMode } from '@/src/context/ThemeContext';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Appearance, Text } from 'react-native';
+import { Appearance } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import { Provider } from 'react-redux';
 import {store} from '@/src/stores/store';
-import { useLoadFonts } from '../hooks/useLoadFonts';
+import { useFonts } from 'expo-font';
 
 const queryClient = new QueryClient();
-// export const unstable_settings = { initialRouteName: "(tabs)" };
+
+export { ErrorBoundary } from "expo-router";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const [fontsLoaded, fontError] = useFonts({
+    inter: require('../../assets/fonts/Inter_24pt-Regular.ttf'),
+    interM: require('../../assets/fonts/Inter_24pt-Medium.ttf'),
+    interB: require('../../assets/fonts/Inter_24pt-Bold.ttf'),
+    interSB: require('../../assets/fonts/Inter_24pt-SemiBold.ttf'),
+    interEB: require('../../assets/fonts/Inter_24pt-ExtraBold.ttf')
+  });
+  
   const [theme, setTheme] = useState<{ mode: ThemeMode }>({ mode: 'system' });
 
   const updateTheme = (newTheme: { mode?: ThemeMode }) => {
@@ -58,11 +67,23 @@ export default function RootLayout() {
     return () => listener.remove();
   }, []);
 
-  const { loaded, error } = useLoadFonts();
+  
 
-  if (!loaded && !error) {
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
     return null;
   }
+
+  // const { loaded, error } = useLoadFonts();
+
+  // if (!loaded && !error) {
+  //   return null;
+  // }
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -15,11 +15,11 @@ export const defaultStyles = StyleSheet.create({
     paddingBottom: 30
   },
   headerText: {
-    fontFamily: 'InterBold',
+    fontFamily: 'interB',
     fontSize: fontsize.lg
   },
   subHeaderText: {
-    fontFamily: 'InterRegular',
+    fontFamily: 'inter',
     fontSize: fontsize.xs
   },
   iconImage: {
@@ -34,7 +34,7 @@ export const defaultStyles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   name: {
-    fontFamily: 'InterB',
+    fontFamily: 'interB',
     fontSize: fontsize.sm
   },
   priceContainer: {
@@ -43,11 +43,11 @@ export const defaultStyles = StyleSheet.create({
     gap: 4
   },
   price: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: fontsize.xs
   },
   change: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: fontsize.xs
   },
   symbolContainer: {
@@ -55,11 +55,11 @@ export const defaultStyles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   symbol: {
-    fontFamily: 'InterB',
+    fontFamily: 'interB',
     fontSize: fontsize.sm
   },
   marketCap: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: 10,
     textAlign: 'right'
   },
@@ -73,7 +73,7 @@ export const defaultStyles = StyleSheet.create({
     padding: 10
   },
   loadingText: {
-    fontFamily: 'InterB',
+    fontFamily: 'interB',
     fontSize: fontsize.base
   }
 });

@@ -119,11 +119,11 @@ const styles = StyleSheet.create({
     paddingBottom: 30
   },
   headerText: {
-    fontFamily: 'InterB',
+    fontFamily: 'interB',
     fontSize: fontsize.lg
   },
   subHeaderText: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: fontsize.xs
   },
   inputContainer: {
@@ -131,13 +131,13 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   titleText: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: fontsize.xs
   },
   textInput: {
     height: hp('5.6%'),
     width: wp('90%'),
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: fontsize.sm,
     borderWidth: 1,
     borderRadius: 8,
@@ -151,11 +151,11 @@ const styles = StyleSheet.create({
     paddingTop: -15
   },
   acctText: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: 10,
   },
   signupText: {
-    fontFamily: 'InterB',
+    fontFamily: 'interB',
     fontSize: fontsize.xs,
   }
 });

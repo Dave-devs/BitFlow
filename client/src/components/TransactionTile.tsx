@@ -65,15 +65,15 @@ const styles = StyleSheet.create({
     flex: 1
   },
   amount: {
-    fontFamily: 'InterEB',
+    fontFamily: 'interEB',
       fontSize: fontsize.sm
   },
   title: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: fontsize.xs
   },
   date: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: fontsize.xs
   }
 });

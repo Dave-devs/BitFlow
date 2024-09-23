@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   text: {
-    fontFamily: 'InterM',
+    fontFamily: 'interM',
     fontSize: fontsize.sm
   }
 });

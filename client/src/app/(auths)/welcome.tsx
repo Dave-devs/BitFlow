@@ -70,11 +70,11 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   text: {
-    fontFamily: 'InterSB',
+    fontFamily: 'interSB',
     fontSize: fontsize.md
   },
   welcome: {
-    fontFamily: 'InterEB',
+    fontFamily: 'interEB',
     fontSize: fontsize.lg
   }
 });

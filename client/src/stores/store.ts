@@ -1,12 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { transactionReducer } from '@/src/slices/transactionSlice';
-import storage from 'redux-persist/lib/storage';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // For React Native
 import { persistReducer, persistStore } from 'redux-persist';
 import { combineReducers } from 'redux';
 
+// Use AsyncStorage for React Native
 const persistConfig = {
   key: 'balance',
-  storage
+  storage: AsyncStorage
 };
 
 const rootReducer = combineReducers({
@@ -28,3 +29,4 @@ export const persistor = persistStore(store);
 // Typing for RootState and AppDispatch
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+

@@ -32,10 +32,13 @@ export const { runTransaction, clearTransactions } = transactionSlice.actions;
 
 export const transactionReducer = transactionSlice.reducer;
 
+// Selectors
 export const selectTransactions = (state: { transactions: TransactionState }) =>
   state.transactions.transactions;
+
 export const selectBalance = (state: { transactions: TransactionState }) =>
   state.transactions.transactions.reduce(
     (acc, transaction) => acc + transaction.amount,
     0
   );
+

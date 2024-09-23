@@ -11,7 +11,6 @@ import {
   runTransaction,
   clearTransactions
 } from '@/src/slices/transactionSlice';
-import { useHeaderHeight } from '@react-navigation/elements';
 import BalanceWidget from '@/src/components/BalanceWidget';
 import TransactionTile from '@/src/components/TransactionTile';
 import { fontsize } from '@/src/constants/tokens';
@@ -25,8 +24,7 @@ import { useRouter } from 'expo-router';
 const HomeScreen = () => {
   const router = useRouter();
   const { activeMode, activeColors, isDarkMode, switchMode } = useTheme();
-  const { top, bottom } = useSafeAreaInsets();
-  const headerHeight = useHeaderHeight();
+  const { top } = useSafeAreaInsets();
 
   const dispatch = useAppDispatch();
   const transactions = useAppSelector(selectTransactions);
@@ -172,12 +170,12 @@ const styles = StyleSheet.create({
     paddingBottom: 50
   },
   sign: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: fontsize.base,
     alignSelf: 'flex-end'
   },
   balance: {
-    fontFamily: 'InterEB',
+    fontFamily: 'interEB',
     fontSize: fontsize.xxl
   },
   balanceWidgetContainer: {
@@ -190,7 +188,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   transactionHeaderText: {
-    fontFamily: 'InterSB',
+    fontFamily: 'interSB',
     fontSize: fontsize.base
   },
   transactionContainer: {
@@ -200,7 +198,7 @@ const styles = StyleSheet.create({
     borderRadius: 4
   },
   noTransactionText: {
-    fontFamily: 'InterR',
+    fontFamily: 'inter',
     fontSize: fontsize.xs
   },
   sortableContainer: {
